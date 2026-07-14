@@ -39,7 +39,7 @@ if [ ! -d "${EXAMPLE_PATH}" ]; then
 fi
 
 echo "Running example \"${example_name}\" - changing directory to \"${EXAMPLE_PATH}\""
-cd ${EXAMPLE_PATH}
+cd "${EXAMPLE_PATH}"
 
 ##############################################################
 # Validate option
@@ -86,7 +86,6 @@ fi
 
 ## now loop through the above array
 echo "Verify environment variable defined:"
-NEWLINE=$'\n'
 for env_name in "${env_arr[@]}"
 do
   echo "  # ${env_name}=${!env_name}"
@@ -95,7 +94,7 @@ do
   fi
 done
 
-if [[ ${#undefined_env_arr[@]} > 0 ]]; then
+if [[ ${#undefined_env_arr[@]} -gt 0 ]]; then
 	echo "Error:
   The following environment variables are not defined!!!"
     for undefined_env in "${undefined_env_arr[@]}"
@@ -116,6 +115,9 @@ echo "Cleaning Terraform files completed"
 echo "Running \"terraform init\" ..."
 terraform init
 echo "\"terraform init\" completed"
+aws_ver=$(grep -A1 '"registry.terraform.io/hashicorp/aws"' .terraform.lock.hcl | sed -n 's/.*version.*=.*"\([^"]*\)".*/\1/p')
+rhcs_ver=$(grep -A1 '"registry.terraform.io/terraform-redhat/rhcs"' .terraform.lock.hcl | sed -n 's/.*version.*=.*"\([^"]*\)".*/\1/p')
+echo "Provider versions — aws: ${aws_ver} rhcs: ${rhcs_ver}"
 
 ##############################################################
 # terraform apply

@@ -51,6 +51,17 @@ Contributors are encouraged to add Terraform tests when introducing or substanti
 
 Before opening a PR, run **`make pre-push-checks`** (or the individual targets below). That flow is the intended single merge gate for OpenShift Prow once `openshift/release` is updated.
 
+- **`make verify`** — For each example: `terraform init` + `validate` at **pinned** provider versions (`examples/**/versions.tf`), then at the **AWS floor** (`examples/**/.aws-provider-floor`). See [`developer-docs/providers-and-versions.md`](developer-docs/providers-and-versions.md).
+
+## Provider compatibility
+
+- **Consumer floor (root):** [`versions.tf`](versions.tf) — minimum to use the root module (`aws >= 6.51.0`).
+- **Examples:** exact provider pins in `examples/**/versions.tf` (Renovate-managed for aws/rhcs); AWS floors in `.aws-provider-floor` for CI.
+- **Submodule-only** use may work below the root floor when the cluster submodule is not in the graph (for example `ocm-role` at `6.0.0`).
+- **Lock files:** not committed (gitignored); CI uses ephemeral locks only.
+
+See [`developer-docs/providers-and-versions.md`](developer-docs/providers-and-versions.md) for submodule floors and Renovate policy.
+
 - **`make lint`** — Runs `terraform fmt -check -recursive` and [tflint](https://github.com/terraform-linters/tflint) across the root module and submodules so formatting and common Terraform issues are caught early.
 - **`make unit-tests`** — For each submodule that contains **`modules/<name>/tests/*.tftest.hcl`**, runs `terraform init -backend=false` and `terraform test` from `modules/<name>/` (requires **Terraform 1.6+**). If no matching files exist, the target succeeds without running tests. This is separate from **`make tests`**, which runs the legacy `tests.sh` script.
 

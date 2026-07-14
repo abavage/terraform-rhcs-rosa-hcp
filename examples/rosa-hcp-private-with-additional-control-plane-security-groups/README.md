@@ -112,16 +112,16 @@ module "bastion_host" {
 
 | Name | Version |
 | ---- | ------- |
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.35.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | = 6.54.0 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | >= 2.0 |
-| <a name="requirement_rhcs"></a> [rhcs](#requirement\_rhcs) | >= 1.6.2 |
+| <a name="requirement_rhcs"></a> [rhcs](#requirement\_rhcs) | = 1.7.7 |
 
 ## Providers
 
 | Name | Version |
 | ---- | ------- |
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.35.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | = 6.54.0 |
 | <a name="provider_random"></a> [random](#provider\_random) | >= 2.0 |
 
 ## Modules
@@ -136,10 +136,10 @@ module "bastion_host" {
 
 | Name | Type |
 | ---- | ---- |
-| [aws_security_group.sg1](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
-| [aws_security_group.sg2](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
-| [aws_vpc_security_group_ingress_rule.sg1](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_security_group_ingress_rule) | resource |
-| [aws_vpc_security_group_ingress_rule.sg2](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_security_group_ingress_rule) | resource |
+| [aws_security_group.sg1](https://registry.terraform.io/providers/hashicorp/aws/6.54.0/docs/resources/security_group) | resource |
+| [aws_security_group.sg2](https://registry.terraform.io/providers/hashicorp/aws/6.54.0/docs/resources/security_group) | resource |
+| [aws_vpc_security_group_ingress_rule.sg1](https://registry.terraform.io/providers/hashicorp/aws/6.54.0/docs/resources/vpc_security_group_ingress_rule) | resource |
+| [aws_vpc_security_group_ingress_rule.sg2](https://registry.terraform.io/providers/hashicorp/aws/6.54.0/docs/resources/vpc_security_group_ingress_rule) | resource |
 | [random_password.password](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
 
 ## Inputs
