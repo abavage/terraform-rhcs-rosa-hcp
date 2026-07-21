@@ -71,8 +71,7 @@
       "automerge": false
     },
     {
-      "description": "Terraform providers in the root versions.tf",
-      "rangeStrategy": "bump",
+      "description": "Auto-bump rhcs provider in root versions.tf",
       "matchManagers": [
         "terraform"
       ],
@@ -82,10 +81,30 @@
       "matchFileNames": [
         "versions.tf"
       ],
-      "groupName": "Terraform Providers",
-      "groupSlug": "tf-providers",
-      "commitMessagePrefix": "chore(deps): ",
+      "matchPackageNames": [
+        "rhcs",
+        "terraform-redhat/rhcs"
+      ],
+      "rangeStrategy": "bump",
+      "groupName": "Terraform rhcs provider",
+      "groupSlug": "tf-rhcs-provider",
       "automerge": false
+    },
+    {
+      "description": "Do not auto-bump aws/null required_provider in root versions.tf (ROSAENG-61028)",
+      "matchManagers": [
+        "terraform"
+      ],
+      "matchDepTypes": [
+        "required_provider"
+      ],
+      "matchFileNames": [
+        "versions.tf"
+      ],
+      "matchPackageNames": [
+        "!rhcs"
+      ],
+      "enabled": false
     },
     {
       "description": "Do not auto-bump minimum Terraform core (root module required_version); change deliberately (OCM-24461)",
@@ -115,17 +134,38 @@
       "enabled": false
     },
     {
+      "description": "Pin and bump AWS and rhcs providers in examples to exact versions",
+      "matchManagers": [
+        "terraform"
+      ],
+      "matchDepTypes": [
+        "required_provider"
+      ],
+      "matchFileNames": [
+        "examples/**/versions.tf"
+      ],
+      "matchPackageNames": [
+        "hashicorp/aws",
+        "aws",
+        "terraform-redhat/rhcs",
+        "rhcs"
+      ],
+      "rangeStrategy": "pin",
+      "groupName": "Example provider pins",
+      "groupSlug": "example-provider-pins",
+      "automerge": false
+    },
+    {
       "description": "Group GitHub Actions updates to avoid many CI pull requests",
       "matchManagers": [
         "github-actions"
       ],
       "groupName": "GitHub Actions Dependencies",
       "groupSlug": "gh-actions",
-      "commitMessagePrefix": "chore(deps): ",
       "automerge": false
     },
     {
-      "description": "Terraform modules grouped by source",
+      "description": "Do not auto-bump Terraform module version pins (ROSAENG-61028)",
       "matchManagers": [
         "terraform"
       ],
@@ -135,10 +175,7 @@
       "matchFileNames": [
         "modules/**"
       ],
-      "groupName": "Terraform Modules",
-      "groupSlug": "tf-modules",
-      "rangeStrategy": "bump",
-      "automerge": false
+      "enabled": false
     }
   ]
 }
